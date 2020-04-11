@@ -1,0 +1,7 @@
+platform :ios, '12.0'
+
+target 'GoOut' do
+  use_frameworks!
+  pod 'IQKeyboardManagerSwift', '= 6.5.4'
+
+end
