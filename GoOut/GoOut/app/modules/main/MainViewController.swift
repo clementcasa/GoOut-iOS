@@ -19,7 +19,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showAttestationButton: UIButton!
-    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var emptyView: UIStackView!
     
     let presenter: MainPresenter =
         MainPresenterImpl(
@@ -92,13 +92,13 @@ extension MainViewController: MainView {
     }
     
     func onShowAndUpdateList() {
-        emptyLabel.isHidden = true
+        emptyView.isHidden = true
         tableView.isHidden = false
         tableView.reloadData()
     }
     
     func onShowEmptyList() {
-        emptyLabel.isHidden = false
+        emptyView.isHidden = false
         tableView.isHidden = true
     }
     
