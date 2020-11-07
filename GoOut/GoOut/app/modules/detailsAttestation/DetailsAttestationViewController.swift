@@ -12,7 +12,6 @@ import PDFKit
 class DetailsAttestationViewController: UIViewController {
     
     @IBOutlet weak var pdfView: PDFView!
-    @IBOutlet weak var deleteButton: UIButton!
     
     let presenter: DetailsAttestationPresenter = DetailsAttesationPresenterImpl()
     
@@ -35,17 +34,25 @@ class DetailsAttestationViewController: UIViewController {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        deleteButton.layer.cornerRadius = 10
-    }
-    
     func setDelegate(delegate: MainViewDelegate) {
         self.delegate = delegate
     }
     
-    @IBAction func didTapOnDeleteButton(_ sender: UIButton) {
-        presenter.deleteFile(filePath: fileName)
+    @IBAction func didTapOnDeleteButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Delete this attestation?",
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(
+            UIAlertAction(title: "Delete forever",
+                          style: .destructive,
+                          handler: { (action) -> Void in
+                            self.presenter.deleteFile(filePath: self.fileName)
+                          }
+            )
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) -> Void in }))
+        
+        navigationController?.present(alert, animated: true, completion: nil)
     }
 }
 

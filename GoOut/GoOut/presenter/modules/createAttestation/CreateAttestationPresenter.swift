@@ -18,6 +18,9 @@ protocol CreateAttestationPresenter {
     func attach(view: CreateAttestationView)
     
     func getCodeToFillForm() -> String
+    func setGroceriesCheckBox(checked: Bool) -> String
+    func setWalkCheckBox(checked: Bool) -> String
+    func setDoctorCheckBox(checked: Bool) -> String
     func didClickOnCreate()
     
     func getFileName() -> String
@@ -41,6 +44,18 @@ class CreateAttestationPresenterImpl: CreateAttestationPresenter {
         buildJavaScriptFiller()
     }
     
+    func setGroceriesCheckBox(checked: Bool) -> String {
+        getFillFormWithCheckedGroceries(checked: checked)
+    }
+    
+    func setWalkCheckBox(checked: Bool) -> String {
+        getFillFormWithCheckedWalk(checked: checked)
+    }
+    
+    func setDoctorCheckBox(checked: Bool) -> String {
+        getFillFormWithCheckedDoctor(checked: checked)
+    }
+    
     func didClickOnCreate() {
         view?.onShowLoading()
         view?.onHideWebView()
@@ -52,7 +67,7 @@ class CreateAttestationPresenterImpl: CreateAttestationPresenter {
     }
     
     private func buildJavaScriptFiller() -> String {
-        getFillFormWithFirstName() + getFillFormWithLastName() + getFillFormWithBirthDate() + getFillFormWithPlaceOfBirth() + getFillFormWithAddress() + getFillFormWithCity() + getFillFormWithZipcode() + getFillFormWithCheckedReasons() + getHideSubmitButton()
+        getFillFormWithFirstName() + getFillFormWithLastName() + getFillFormWithBirthDate() + getFillFormWithPlaceOfBirth() + getFillFormWithAddress() + getFillFormWithCity() + getFillFormWithZipcode() + getFillFormWithCurrentTime() + getFillFormWithCheckedWalk(checked: true) + getHideSubmitButton()
     }
     
     private func getFillFormWithFirstName() -> String {
@@ -68,7 +83,7 @@ class CreateAttestationPresenterImpl: CreateAttestationPresenter {
     }
     
     private func getFillFormWithPlaceOfBirth() -> String {
-        "\(getElement(id: "field-lieunaissance")).value = \"\(preferenceRepository.getBirthPlace())\"; "
+        "\(getElement(id: "field-placeofbirth")).value = \"\(preferenceRepository.getBirthPlace())\"; "
     }
     
     private func getFillFormWithAddress() -> String {
@@ -76,15 +91,27 @@ class CreateAttestationPresenterImpl: CreateAttestationPresenter {
     }
     
     private func getFillFormWithCity() -> String {
-        "\(getElement(id: "field-town")).value = \"\(preferenceRepository.getCity())\"; "
+        "\(getElement(id: "field-city")).value = \"\(preferenceRepository.getCity())\"; "
     }
     
     private func getFillFormWithZipcode() -> String {
         "\(getElement(id: "field-zipcode")).value = \"\(preferenceRepository.getZipcode())\"; "
     }
     
-    private func getFillFormWithCheckedReasons() -> String {
-        "\(getElement(id: "checkbox-courses")).checked = true; "
+    private func getFillFormWithCheckedGroceries(checked: Bool) -> String {
+        "\(getElement(id: "checkbox-achats")).checked = \(checked); "
+    }
+
+    private func getFillFormWithCheckedWalk(checked: Bool) -> String {
+        "\(getElement(id: "checkbox-sport_animaux")).checked = \(checked); "
+    }
+
+    private func getFillFormWithCheckedDoctor(checked: Bool) -> String {
+        "\(getElement(id: "checkbox-sante")).checked = \(checked); "
+    }
+
+    private func getFillFormWithCurrentTime() -> String {
+        "\(getElement(id: "field-heuresortie")).value = \"\(getCurrentTime())\"; "
     }
     
     private func getHideSubmitButton() -> String {
@@ -101,6 +128,13 @@ class CreateAttestationPresenterImpl: CreateAttestationPresenter {
     
     private func getElement(id: String) -> String {
         "document.getElementById(\"\(id)\")"
+    }
+
+    private func getCurrentTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale.init(identifier: "fr")
+        return dateFormatter.string(from: Date())
     }
     
     private func getDateFormatted() -> String {
