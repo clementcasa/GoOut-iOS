@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import PDFKit
 import WebKit
 
@@ -34,11 +35,20 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         
         presenter.attach(view: self)
         presenter.setup()
+        
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        center.requestAuthorization(options: options) { _, _ in }
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         showAttestationButton.layer.cornerRadius = 10
+    }
+
+    private func removeAllPendingNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
     }
     
     @IBAction func didTapOnShowAttestation(_ sender: UIButton) {
@@ -57,6 +67,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
                           style: .destructive,
                           handler: { (action) -> Void in
                             self.presenter.deleteAllAttestations()
+                            self.removeAllPendingNotifications()
                           }
             )
         )

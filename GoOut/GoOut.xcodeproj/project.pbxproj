@@ -29,6 +29,7 @@
 		EB6852EE2441CA730069E66C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6852ED2441CA730069E66C /* SettingsViewController.swift */; };
 		EB6852F12441CB1F0069E66C /* DetailsAttestationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6852F02441CB1F0069E66C /* DetailsAttestationViewController.swift */; };
 		EB6852F42441CF3F0069E66C /* AttestationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6852F32441CF3F0069E66C /* AttestationTableViewCell.swift */; };
+		EBAACCC625517AA800146015 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAACCC525517AA800146015 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		EB6852ED2441CA730069E66C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EB6852F02441CB1F0069E66C /* DetailsAttestationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAttestationViewController.swift; sourceTree = "<group>"; };
 		EB6852F32441CF3F0069E66C /* AttestationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttestationTableViewCell.swift; sourceTree = "<group>"; };
+		EBAACCC525517AA800146015 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 			children = (
 				EB6852E22441C5740069E66C /* WKWebViewExtension.swift */,
 				EB48E33B24423054002444F5 /* UIColorExtension.swift */,
+				EBAACCC525517AA800146015 /* UIImageExtension.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				EB63625D2441E1A0009E49E0 /* MainPresenter.swift in Sources */,
 				EB6852F42441CF3F0069E66C /* AttestationTableViewCell.swift in Sources */,
 				EB63626224420558009E49E0 /* CreateAttestationPresenter.swift in Sources */,
+				EBAACCC625517AA800146015 /* UIImageExtension.swift in Sources */,
 				EB6852E12440DB300069E66C /* CreateAttestationViewController.swift in Sources */,
 				EB63626424420564009E49E0 /* DetailsAttestationPresenter.swift in Sources */,
 				EB6852EE2441CA730069E66C /* SettingsViewController.swift in Sources */,

@@ -46,7 +46,7 @@ class DetailsAttestationViewController: UIViewController {
             UIAlertAction(title: "Delete forever",
                           style: .destructive,
                           handler: { (action) -> Void in
-                            presenter.deleteFile(filePath: fileName)
+                            self.presenter.deleteFile(filePath: self.fileName)
                           }
             )
         )
