@@ -67,8 +67,7 @@ class CreateAttestationViewController: UIViewController, WKNavigationDelegate {
     }
 
     private func scheduleNotification(identifier: String) {
-        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2700, repeats: false)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2700, repeats: false)
         let content = UNMutableNotificationContent()
         content.title = "Hurry to come back home!"
         content.body = "Your attestation is almost out of time, create a new one or go home!"
